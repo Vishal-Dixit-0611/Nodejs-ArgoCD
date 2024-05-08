@@ -1,0 +1,27 @@
+{{- if .Values.serviceEnabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.servicename }}
+spec:
+  selector:
+    app.kubernetes.io/name: {{ .Values.name }}
+  ports:
+    {{- range $.Values.ports }}
+    - protocol: TCP
+      port: {{ .port }}
+      name: {{ .name }}
+      targetPort: {{ .port }}
+    {{- end }}
+  type: {{ .Values.serviceType }}
+  {{- if .Values.staticIP }}
+  loadBalancerIP: {{ .Values.staticIP }}
+  {{- end }}
+  {{- if .Values.whitelistedIPs }}
+  loadBalancerSourceRanges:
+  {{- range $.Values.whitelistedIPs }}
+  - {{ . }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+

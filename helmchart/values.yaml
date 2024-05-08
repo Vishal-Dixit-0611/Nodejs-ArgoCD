@@ -1,0 +1,29 @@
+name: Node-hello-Application
+servicename: Node-hello-service
+replicas: 1
+
+image:
+  name: vishaldixit0611/node-hello:latest
+  pullPolicy: Always
+  secrets: dockerhub-creds
+
+
+ports:
+  - name: http
+    port: 3000
+
+livenessProbe:
+  tcpSocket:
+    port: 3000
+  initialDelaySeconds: 3600
+  periodSeconds: 10
+readinessProbe:
+  tcpSocket:
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+serviceEnabled: true
+
+serviceType: LoadBalancer
+
