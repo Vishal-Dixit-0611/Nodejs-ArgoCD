@@ -1,5 +1,5 @@
-name: Node-hello-Application
-servicename: Node-hello-service
+name: node-hello-application
+servicename: node-hello-service
 replicas: 1
 
 image:
@@ -11,17 +11,6 @@ image:
 ports:
   - name: http
     port: 3000
-
-livenessProbe:
-  tcpSocket:
-    port: 3000
-  initialDelaySeconds: 3600
-  periodSeconds: 10
-readinessProbe:
-  tcpSocket:
-    port: 3000
-  initialDelaySeconds: 5
-  periodSeconds: 10
 
 serviceEnabled: true
 
