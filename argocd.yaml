@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Nodejs
+  name: nodejsnew
   namespace: argocd
 spec:
   source:
@@ -9,9 +9,9 @@ spec:
     path: helmchart
     targetRevision: HEAD
   destination:
-    server: 'https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: nodejs
-  project: nodejs-hello-argocd
+  project: default
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
