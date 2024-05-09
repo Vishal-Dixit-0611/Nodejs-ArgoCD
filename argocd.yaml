@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-hello-application
+  namespace: nodejs
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Vishal-Dixit-0611/Nodejs-ArgoCD/helmchart
+    path: master
+    targetRevision: <git_revision>
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nodejs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
