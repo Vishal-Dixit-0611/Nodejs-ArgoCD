@@ -2,21 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: Nodejs
+  namespace: argocd
 spec:
-  destination:
-    name: ''
-    namespace: nodejs
-    server: 'https://kubernetes.default.svc'
   source:
-    path: helmchart
     repoURL: 'https://github.com/Vishal-Dixit-0611/Nodejs-ArgoCD.git'
-    targetRevision: master
-  sources: []
+    path: helmchart
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc
+    namespace: nodejs
   project: nodejs-hello-argocd
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
     automated:
       prune: true
       selfHeal: true
