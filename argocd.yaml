@@ -8,10 +8,9 @@ spec:
   source:
     repoURL: https://github.com/Vishal-Dixit-0611/Nodejs-ArgoCD/helmchart
     path: master
-    targetRevision: <git_revision>
     helm:
       valueFiles:
-        - values.yaml
+        - /helmchart/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: nodejs
